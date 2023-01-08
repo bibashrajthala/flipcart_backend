@@ -20,16 +20,16 @@ export const signUpRequestValidation = [
     .withMessage("Email is required")
     .isEmail()
     .withMessage("Invalid email address")
-    .normalizeEmail(),
+    .normalizeEmail(), // so as to normalize email(eg gmail dont care about uppercase or lowercase,dot(.) in email,etc)
 
   check("password")
     .notEmpty()
     .withMessage("Password is required")
     .isLength({ min: 8, max: 15 })
     .withMessage("your password should have min and max length between 8-15")
-    .matches(/\d/)
+    .matches(/\d/) // regex for atleast numerical digit needed
     .withMessage("your password should have at least one number")
-    .matches(/[!@#$%^&*(),.?":{}|<>]/)
+    .matches(/[!@#$%^&*(),.?":{}|<>]/) // regex for atleast one special character needed
     .withMessage("Your password should have at least one special character"),
 
   check("confirmPassword")
@@ -50,16 +50,16 @@ export const signInRequestValidation = [
     .withMessage("Email is required")
     .isEmail()
     .withMessage("Invalid email address")
-    .normalizeEmail(),
+    .normalizeEmail(), // so as to normalize email(eg gmail dont care about uppercase or lowercase,dot(.) in email,etc)
 
   check("password")
     .notEmpty()
     .withMessage("Password is required")
     .isLength({ min: 8, max: 15 })
     .withMessage("your password should have min and max length between 8-15")
-    .matches(/\d/)
+    .matches(/\d/) // regex for atleast numerical digit needed
     .withMessage("your password should have at least one number")
-    .matches(/[!@#$%^&*(),.?":{}|<>]/)
+    .matches(/[!@#$%^&*(),.?":{}|<>]/) // regex for atleast one special character needed
     .withMessage("Your password should have at least one special character"),
 ];
 
