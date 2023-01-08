@@ -64,6 +64,16 @@ userSchema.methods = {
     return bcrypt.compareSync(password, this.hash_password); // gives true or false after comparing password with hashed password
   },
 };
+
+userSchema
+  .virtual("confirmPassword")
+  .get(function () {
+    return this.confirmPassword;
+  })
+  .set(function (value) {
+    this.confirmPassword = value;
+  });
+
 const userModel = mongoose.model("User", userSchema);
 
 export default userModel;
