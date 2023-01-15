@@ -53,9 +53,13 @@ export const signIn = (req, res) => {
       // authenticate is method we created in our userModel to compare password using bcrypt
       // if authentication is successfull
       if (user.authenticate(password)) {
-        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
-          expiresIn: "1h",
-        });
+        const token = jwt.sign(
+          { _id: user._id, role: user.role },
+          process.env.JWT_SECRET,
+          {
+            expiresIn: "1h",
+          }
+        );
         const { firstName, lastName, email, role, fullName, _id } = user;
         return res.status(200).json({
           token,

@@ -1,11 +1,14 @@
 import express from "express";
 import env from "dotenv";
 import mongoose from "mongoose";
-import bodyParser from "body-parser";
+// import bodyParser from "body-parser";
 
 //routes imported
 import userRoutes from "./routes/auth.route.js";
 import adminRoutes from "./routes/admin/auth.admin.route.js";
+import categoryRoutes from "./routes/category.route.js";
+import productRoutes from "./routes/product.route.js";
+import cartRoutes from "./routes/cart.route.js";
 
 const app = express();
 
@@ -22,16 +25,16 @@ mongoose
     console.log("mongoDB database connected");
   });
 
-app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
+app.use("/public/product", express.static("./src/uploads/product")); // serve staic files of path ./src/uploads/product to "localhost:PORT/public/product/FILENAME"
+app.use("/public/category", express.static("./src/uploads/category"));
+app.use(express.json());
 
 //routes
 app.use("/api", userRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api", categoryRoutes);
+app.use("/api", productRoutes);
+app.use("/api", cartRoutes);
 
 app.get("/", (req, res, next) => {
   res.status(200).json({
