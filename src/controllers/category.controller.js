@@ -14,10 +14,12 @@ function createCategories(categories, _id = null) {
 
   categoryList.forEach((category) => {
     const { _id, name, slug } = category;
+    const categoryImage = category?.categoryImage;
     finalCategoryList.push({
       _id,
       name,
       slug,
+      categoryImage,
       children: createCategories(categories, _id),
     });
   });

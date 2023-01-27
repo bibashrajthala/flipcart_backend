@@ -1,6 +1,7 @@
 import express from "express";
 import env from "dotenv";
 import mongoose from "mongoose";
+import cors from "cors";
 // import bodyParser from "body-parser";
 
 //routes imported
@@ -27,7 +28,9 @@ mongoose
 
 app.use("/public/product", express.static("./src/uploads/product")); // serve staic files of path ./src/uploads/product to "localhost:PORT/public/product/FILENAME"
 app.use("/public/category", express.static("./src/uploads/category"));
+
 app.use(express.json());
+app.use(cors());
 
 //routes
 app.use("/api", userRoutes);
